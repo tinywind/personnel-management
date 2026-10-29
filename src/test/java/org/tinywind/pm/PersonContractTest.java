@@ -1,15 +1,15 @@
 package org.tinywind.pm;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.tinywind.pm.model.Person;
 import org.tinywind.pm.model.PersonRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -17,20 +17,20 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonContractTest {
     private static ConfigurableApplicationContext application;
     private static String base;
 
-    @BeforeClass
+    @BeforeAll
     public static void startIsolatedApplication() {
         application = SpringApplication.run(Launcher.class, "--server.port=0", "--server.address=127.0.0.1",
                 "--spring.datasource.url=jdbc:h2:mem:personnel-contract;DB_CLOSE_DELAY=-1", "--spring.jpa.hibernate.ddl-auto=create-drop");
         base = "http://127.0.0.1:" + application.getEnvironment().getProperty("local.server.port");
     }
 
-    @AfterClass
+    @AfterAll
     public static void stopIsolatedApplication() {
         if (application != null) application.close();
     }

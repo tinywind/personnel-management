@@ -10,7 +10,7 @@ spring:
             ddl-auto: update
     h2:
         console:
-            enabled: true
+            enabled: false
     datasource:
         url: jdbc:h2:file:./pm
     jackson:
